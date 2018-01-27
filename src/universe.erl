@@ -43,7 +43,7 @@ handle_call(tick, _From, Generation) ->
     fun({X, Y}, {AccX, AccY}) -> {X ++ AccX, Y ++ AccY} end, {[], []}, Responses),
 
   % bring life to the Zombies!
-  UniqueToLive = remove_duplicates(ToLive),
+  UniqueToLive = utils:remove_duplicates(ToLive),
   raiseDead(UniqueToLive),
   % kill unlucky
   killAlive(ToDie),
@@ -58,8 +58,6 @@ handle_call(_Message, _From, Generation) ->
 %%====================================================================
 %% Internal functions
 %%====================================================================
-
-remove_duplicates(List) -> sets:to_list(sets:from_list(List)).
 
 raiseDead(Positions) ->
   cell_sup:raiseTheDead(Positions).
