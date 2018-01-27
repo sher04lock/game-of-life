@@ -3,11 +3,12 @@
 Game Of Life implementation in Erlang, where every living cell is represented by another process.
 Dead cells are just... dead. There is no need to store them as another processes.
 
-## Compile
+## Running
 
 Compile:
 
-    $ rebar3 compile
+    $ rebar3 shell
+(compile & run eshell)
 
 or
 
