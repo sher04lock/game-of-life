@@ -3,6 +3,9 @@
 Game Of Life implementation in Erlang, where every living cell is represented by another process.
 Dead cells are just... dead. There is no need to store them as another processes.
 
+Each cell is a `gen_server` supervised by `cell_sup`. 
+When cell process is killed abnormally, it's automatically restarted by supervisor, without bringing the down entire application.
+
 ## Running
 
 Compile:

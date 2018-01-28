@@ -35,13 +35,7 @@ init([]) ->
 
 
 handle_call({insert, Position, Pid}, _From, Registry) ->
-  case maps:find(Position, Registry) of
-    {ok, _} ->
-      NewRegister = Registry,
-      {cell_alive, Position};
-    error ->
-      NewRegister = maps:put(Position, Pid, Registry)
-  end,
+  NewRegister = maps:put(Position, Pid, Registry),
   {reply, {ok, Position, Pid}, NewRegister};
 
 handle_call({find, Position}, _From, Registry) ->
@@ -80,5 +74,5 @@ handle_call(_Message, _From, Registry) ->
 
 % ----------------------------- asynchronous ------------------------------
 
-handle_cast(_Message, State) -> {noreply, State}.
+handle_cast(_Message, Registry) -> {noreply, Registry}.
 
